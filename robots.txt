@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /checkout.html
+Disallow: /account.html
+Disallow: /compare.html
+
+Sitemap: https://www.sitara.pk/sitemap.xml

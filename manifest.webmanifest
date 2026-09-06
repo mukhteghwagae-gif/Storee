@@ -1,0 +1,34 @@
+{
+  "name": "Sitara — Fine Jewellery",
+  "short_name": "Sitara",
+  "description": "Hallmarked 22k gold and sterling silver, made in Lahore.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fbf9f6",
+  "theme_color": "#06231e",
+  "lang": "en-PK",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Shop",
+      "url": "/shop.html"
+    },
+    {
+      "name": "Track an order",
+      "url": "/track.html"
+    },
+    {
+      "name": "Gold rate",
+      "url": "/gold.html"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+/* ==========================================================================
+   SITARA — theming, dark mode, high contrast, seasonal skins, a11y
+   Layered on top of sitara.css. Everything keys off [data-theme] / [data-mode]
+   / [data-contrast] on <html>, and off CSS custom properties, so a theme is a
+   handful of variable overrides — never a second stylesheet to maintain.
+   ========================================================================== */
+
+/* ---------- Motion & shimmer primitives ---------- */
+@keyframes gold-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(90deg); }
+}
+@keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes shimmer-sweep { 100% { transform: translateX(100%); } }
+
+/* Gold-gradient text — for hero words, prices, section flourishes */
+.gold-text, .goldtext {
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-soft) 25%, #fff5dc 40%, var(--gold-soft) 55%, var(--gold) 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.gold-text--live { animation: gold-shimmer 6s linear infinite; }
+
+/* Gold shimmer sweep on hover — tactile, luxurious, cheap to render */
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(105deg, transparent 30%, rgba(217,190,131,.35) 48%, rgba(255,245,220,.55) 50%, rgba(217,190,131,.35) 52%, transparent 70%);
+  pointer-events: none;
+}
+.shimmer:hover::after { animation: shimmer-sweep 0.9s var(--ease); }
+
+/* Sparkle accents on hover (used on featured cards, wishlist heart) */
+.sparkle-host { position: relative; }
+.sparkle-host::before, .sparkle-host::after {
+  content: "✦"; position: absolute; color: var(--gold-soft); font-size: 11px; opacity: 0; pointer-events: none;
+}
+.sparkle-host:hover::before { top: 8px; right: 12px; animation: sparkle 0.9s var(--ease); }
+.sparkle-host:hover::after { bottom: 14px; left: 14px; animation: sparkle 1.1s .15s var(--ease); }
+
+/* Elegant brand loading veil (first paint / route change) */
+.route-veil {
+  position: fixed; inset: 0; z-index: 300; background: var(--pearl);
+  display: grid; place-items: center; transition: opacity .5s var(--ease), visibility .5s;
+}
+.route-veil.is-gone { opacity: 0; visibility: hidden; }
+.route-veil__mark {
+  width: 54px; height: 54px; position: relative;
+}
+.route-veil__mark::before {
+  content: ""; position: absolute; inset: 0; border: 1px solid var(--line);
+  border-top-color: var(--gold); border-radius: 50%; animation: spin 0.9s linear infinite;
+}
+.route-veil__mark::after {
+  content: "✦"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--gold); font-size: 18px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Skeleton shimmer for lazy product cards */
+.skeleton { background: linear-gradient(90deg, var(--pearl-dim) 25%, var(--pearl-deep) 37%, var(--pearl-dim) 63%); background-size: 400% 100%; animation: gold-shimmer 1.4s ease infinite; }
+
+/* Smooth page transition — content fades up on load */
+.js body[data-transition] main { animation: fade-up .5s var(--ease) both; }
+
+/* ==========================================================================
+   DARK MODE — elegant, gold on deep emerald-black. Not a grey inversion.
+   ========================================================================== */
+html[data-mode="dark"] {
+  --pearl: #0d1a17;
+  --pearl-dim: #122420;
+  --pearl-deep: #16302a;
+  --ink: #f0ead9;
+  --stone: #a9b4ac;
+  --stone-light: #7d887f;
+  --line: #24403a;
+  --emerald-900: #04140f;
+  --emerald-800: #0a231d;
+  --gold: #cba95b;
+  --gold-soft: #e4cf95;
+}
+html[data-mode="dark"] body { background: var(--pearl); color: var(--ink); }
+html[data-mode="dark"] .header { background: rgba(13,26,23,.9); }
+html[data-mode="dark"] .card__flag { background: #16302a; color: var(--gold-soft); }
+html[data-mode="dark"] .card__media, html[data-mode="dark"] .gallery__main { background: #16302a; }
+html[data-mode="dark"] .section--band { background: #10221d; }
+html[data-mode="dark"] .btn { background: var(--gold); border-color: var(--gold); color: #04140f; }
+html[data-mode="dark"] .btn:hover { background: var(--gold-soft); border-color: var(--gold-soft); }
+html[data-mode="dark"] .btn--ghost { background: none; color: var(--gold-soft); border-color: var(--gold-soft); }
+html[data-mode="dark"] .filters input, html[data-mode="dark"] .field input,
+html[data-mode="dark"] .field select, html[data-mode="dark"] .field textarea { background: #10221d; }
+html[data-mode="dark"] .route-veil { background: var(--pearl); }
+html[data-mode="dark"] .dark { background: #04140f; }
+/* Respect the OS preference on first visit, before the user chooses */
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode="light"]):not([data-mode="dark"]) {
+    --pearl: #0d1a17; --pearl-dim: #122420; --pearl-deep: #16302a; --ink: #f0ead9;
+    --stone: #a9b4ac; --line: #24403a; --gold: #cba95b; --gold-soft: #e4cf95;
+  }
+  html:not([data-mode="light"]):not([data-mode="dark"]) body { background: #0d1a17; color: #f0ead9; }
+}
+
+/* ==========================================================================
+   SEASONAL THEMES — a shift of accent + a motif, never a redesign.
+   Set html[data-theme="eid|wedding|valentine|independence"].
+   ========================================================================== */
+
+/* Eid — crescent gold on deep green, a little more ceremonial */
+html[data-theme="eid"] { --gold: #c6a24a; --gold-soft: #e6d08a; --gulabi: #7a9b6e; }
+html[data-theme="eid"] .ticker::before { content: "☾ "; color: var(--gold-soft); }
+
+/* Wedding season — warmer, gulabi-forward, festive */
+html[data-theme="wedding"] { --gulabi: #b8546a; --gold-soft: #e7c893; }
+html[data-theme="wedding"] .hero__kicker { color: #f0c9d2; }
+html[data-theme="wedding"] .card__flag--new { background: #7a2038; }
+
+/* Valentine — soft blush accents */
+html[data-theme="valentine"] { --gulabi: #c96a86; --gold: #c99b74; }
+html[data-theme="valentine"] .rule { background: #c96a86; }
+
+/* Independence Day (14 Aug) — deep green + white, crescent-and-star */
+html[data-theme="independence"] { --emerald-600: #01411c; --gold: #0b7a3b; --gold-soft: #4aa96c; }
+
+/* A discreet seasonal ribbon the theme controller can show */
+.season-ribbon {
+  display: none; text-align: center; font-size: var(--t-xs); letter-spacing: .18em; text-transform: uppercase;
+  padding: .5rem; background: var(--emerald-900); color: var(--gold-soft); border-bottom: 1px solid var(--line-dark);
+}
+html[data-theme] .season-ribbon.is-on { display: block; }
+
+/* ==========================================================================
+   ACCESSIBILITY MODES
+   ========================================================================== */
+
+/* High-contrast — WCAG AAA-leaning: pure ink, heavier lines, no low-contrast greys */
+html[data-contrast="high"] {
+  --pearl: #ffffff; --pearl-dim: #f4f4f4; --pearl-deep: #ececec;
+  --ink: #000000; --stone: #1c1c1c; --stone-light: #333; --line: #000; --gold: #7a5a12; --gold-soft: #7a5a12;
+  --emerald-900: #002019; --emerald-800: #002019;
+}
+html[data-contrast="high"] a:not(.btn) { text-decoration: underline; }
+html[data-contrast="high"] .btn { border-width: 2px; }
+html[data-contrast="high"] :focus-visible { outline: 3px solid #000; outline-offset: 2px; }
+html[data-contrast="high"][data-mode="dark"] {
+  --pearl: #000; --ink: #fff; --stone: #eee; --line: #fff; --gold: #ffd479; --gold-soft: #ffd479;
+}
+
+/* Colour-blind-safe accents — replaces gulabi red/green urgency with blue/orange */
+html[data-cb="safe"] { --gulabi: #1a6fb0; }
+html[data-cb="safe"] .card__flag--low { background: #b06a1a; }
+html[data-cb="safe"] .stock-bar span { background: #1a6fb0; }
+
+/* User font-size scaling — multiplies the whole type scale */
+html[data-fontscale="large"] { font-size: 112.5%; }
+html[data-fontscale="xlarge"] { font-size: 125%; }
+
+/* Always-visible, strong focus ring in every mode */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
+[tabindex]:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+
+/* Reduce-motion honoured for all the new animation too */
+@media (prefers-reduced-motion: reduce) {
+  .shimmer::after, .gold-text--live, .sparkle-host::before, .sparkle-host::after,
+  .route-veil__mark::before, .skeleton, .js body[data-transition] main { animation: none !important; }
+  .route-veil { transition: none; }
+}
+
+/* ==========================================================================
+   THE CONTROL DOCK — the floating settings for theme / mode / a11y
+   ========================================================================== */
+.dock-toggle {
+  position: fixed; left: 18px; bottom: 92px; z-index: 82;
+  width: 50px; height: 50px; border-radius: 50%; background: var(--emerald-900); color: var(--gold-soft);
+  display: grid; place-items: center; box-shadow: 0 6px 24px rgba(6,35,30,.28);
+}
+.dock-toggle svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.4; }
+.dock {
+  position: fixed; left: 18px; bottom: 152px; z-index: 83; width: min(320px, calc(100% - 36px));
+  background: var(--pearl); border: 1px solid var(--line); box-shadow: 0 20px 60px rgba(6,35,30,.22);
+  padding: 1.25rem; display: none;
+}
+.dock.is-open { display: block; animation: fade-up .3s var(--ease) both; }
+.dock h3 { font-family: var(--sans); font-size: var(--t-xs); letter-spacing: .18em; text-transform: uppercase; color: var(--stone); margin: 0 0 .6rem; }
+.dock section + section { margin-top: 1.1rem; }
+.dock__row { display: flex; gap: .4rem; flex-wrap: wrap; }
+.dock__btn { border: 1px solid var(--line); padding: .45rem .7rem; font-size: var(--t-xs); letter-spacing: .05em; background: var(--pearl); }
+.dock__btn[aria-pressed="true"] { background: var(--emerald-900); color: #fff; border-color: var(--emerald-900); }
+html[data-mode="dark"] .dock__btn[aria-pressed="true"] { background: var(--gold); color: #04140f; border-color: var(--gold); }
+.dock__swatch { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line); position: relative; }
+.dock__swatch[aria-pressed="true"]::after { content: "✓"; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: 12px; }
+
+@media (max-width: 900px) {
+  .dock-toggle { }  /* position set authoritatively in sitara.css refinement layer */
+  .dock { left: 12px; right: 12px; width: auto; bottom: 276px; }
+}
+
+/* ---- Consent banner ---- */
+.consent {
+  position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 130; max-width: 640px; margin-inline: auto;
+  background: var(--emerald-900); color: var(--gold-wash); border: 1px solid var(--line-dark);
+  padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  box-shadow: 0 18px 50px rgba(6,35,30,.3); animation: fade-up .4s var(--ease) both;
+}
+.consent p { margin: 0; font-size: var(--t-sm); color: var(--gold-wash); }
+.consent a { color: #fff; }
+.consent__btns { display: flex; gap: .5rem; }
