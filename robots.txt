@@ -4,4 +4,4 @@ Disallow: /checkout.html
 Disallow: /account.html
 Disallow: /compare.html
 
-Sitemap: https://www.sitara.pk/sitemap.xml
+Sitemap: https://mukhteghwagae-gif.github.io/Storee/sitemap.xml

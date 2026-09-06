@@ -1,6 +1,6 @@
 /* Sitara — offline shell. Caches pages and assets a shopper has already seen so
    the site still opens on a bad connection. Never caches the API. */
-const CACHE = "sitara-vmtptmu7f";
+const CACHE = "sitara-vmtpull1k";
 const SHELL = ["/", "/index.html", "/shop.html", "/assets/css/sitara.css", "/assets/css/themes.css", "/assets/js/app.js", "/assets/js/theme.js", "/assets/js/catalog.js"];
 
 self.addEventListener("install", (e) => {
