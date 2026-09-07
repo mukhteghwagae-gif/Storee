@@ -1,0 +1,1 @@
+function e(e){let t=Math.round(e),n=t<0?`-`:``,r=String(Math.abs(t));if(r.length<=3)return`${n}Rs ${r}`;let i=r.slice(-3);return`${n}Rs ${r.slice(0,-3).replace(/\B(?=(\d{2})+(?!\d))/g,`,`)},${i}`}export{e as t};

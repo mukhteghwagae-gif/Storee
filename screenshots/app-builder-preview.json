@@ -1,0 +1,39 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Sitara — Fine Jewellery, Lahore",
+      "hasCanvas": false,
+      "bodyTextLen": 4542,
+      "bodyTextHash": "7406232eab6b5c23a151d21a598edbd4c65a28bb2e62e51bcd4a8e767e7b5533",
+      "bodyTextPrefix": "24K GOLD · RS 3,52,000 / TOLA 22K GOLD · RS 3,22,667 / TOLA HALL",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Sitara — Fine Jewellery, Lahore",
+      "hasCanvas": false,
+      "bodyTextLen": 4515,
+      "bodyTextHash": "74480b33e9298ec4accb3a502724b8754d1f73f67016f13ea4bbfa29f7ea9a8a",
+      "bodyTextPrefix": "24K GOLD · RS 3,52,000 / TOLA 22K GOLD · RS 3,22,667 / TOLA HALL",
+      "horizontalOverflow": false,
+      "consoleErrors": [
+        "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <Root>\n      <html lang=\"en\" className=\"antialiased\" suppressHydrationWarning={true}>\n        <head>\n        <body>\n          <PreviewHostBridge>\n          <AuthProvider>\n            <StorefrontProvider>\n              <Shell>\n                <div className=\"min-h-dvh ...\">\n                  <GoldTicker>\n                  <Header>\n                  <div>\n                  <Footer>\n                    <footer className=\"border-t b...\">\n                      <div className=\"mx-auto gr...\">\n                        <div>\n                        <div>\n                        <div>\n                        <div>\n                          <p>\n                          <p>\n                          <div className=\"mt-3\">\n                            <NewsletterForm compact={true}>\n                              <form onSubmit={function onSubmit} className=\"flex gap-2\">\n                                <input\n                                  required={true}\n                                  type=\"email\"\n                                  value=\"\"\n                                  onChange={function onChange}\n                                  placeholder=\"Email\"\n                                  className=\"h-11 flex-1 rounded-lg border border-border bg-ivory px-3 text-sm\"\n-                                 style={{caret-color:\"transparent\"}}\n                                >\n                                ...\n                      ...\n                  ...\n          ...\n",
+        "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <MatchImpl routeId=\"/\">\n      <MatchView router={{...}} match={{id:\"//\",ssr:true, ...}}>\n        <SafeFragment>\n          <SafeFragment fallback={null}>\n            <CatchBoundary getResetKey={function getResetKey} errorComponent={function AppErrorComponent} ...>\n              <SafeFragment fallback={function fallback}>\n                <MatchInnerImpl match={{id:\"//\",ssr:true, ...}}>\n                  <Lazy>\n                    <Home>\n                      <main>\n                        <script>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section>\n                        <section className=\"border-t b...\">\n                          <p>\n                          <h2>\n                          <p>\n                          <div className=\"mx-auto mt...\">\n                            <NewsletterForm>\n                              <form onSubmit={function onSubmit} className=\"flex flex-...\">\n                                <input\n                                  required={true}\n                                  type=\"email\"\n                                  value=\"\"\n                                  onChange={function onChange}\n                                  placeholder=\"Email\"\n                                  className=\"h-11 flex-1 rounded-lg border border-border bg-ivory px-3 text-sm\"\n-                                 style={{caret-color:\"transparent\"}}\n                                >\n                                ...\n                        ...\n"
+      ],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

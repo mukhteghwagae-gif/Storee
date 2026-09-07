@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Sitara — Fine Jewellery, Lahore",
+      "hasCanvas": false,
+      "bodyTextLen": 4542,
+      "bodyTextHash": "7406232eab6b5c23a151d21a598edbd4c65a28bb2e62e51bcd4a8e767e7b5533",
+      "bodyTextPrefix": "24K GOLD · RS 3,52,000 / TOLA 22K GOLD · RS 3,22,667 / TOLA HALL",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Sitara — Fine Jewellery, Lahore",
+      "hasCanvas": false,
+      "bodyTextLen": 4515,
+      "bodyTextHash": "74480b33e9298ec4accb3a502724b8754d1f73f67016f13ea4bbfa29f7ea9a8a",
+      "bodyTextPrefix": "24K GOLD · RS 3,52,000 / TOLA 22K GOLD · RS 3,22,667 / TOLA HALL",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

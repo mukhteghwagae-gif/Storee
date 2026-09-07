@@ -1,0 +1,1 @@
+import{p as e}from"./commerce-C3zxzbhU.js";function t(t,n){let r={};if(n)for(let[e,t]of Object.entries(n))t!==void 0&&(r[e]=t);e({data:{name:t.slice(0,40),payload:JSON.stringify(r).slice(0,500)}}).catch(()=>{})}export{t};
